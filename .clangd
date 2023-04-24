@@ -1,0 +1,63 @@
+CompileFlags:
+    Compiler: clang-cl
+    Add:
+      [ -std=c++2b,
+        # -Wno-documentation, # 启用有关文档注释的警告
+        -Wno-missing-prototypes, # 当函数在使用前没有函数原型时
+        # -DLIBCXX_ENABLE_INCOMPLETE_FEATURES=ON,
+        -Wall,
+        -Wextra,
+        -pedantic,
+        -Wno-c++98-compat,
+        -Wno-c++98-compat-pedantic,
+        -Wno-unused-variable,
+      ]
+    Remove:
+      [
+
+      ]
+Diagnostics:
+  UnusedIncludes: Strict
+  ClangTidy:
+    Add:
+    [
+        bugprone-*,
+        cert-*,
+        clang-analyzer-*,
+        cppcoreguidelines-*,
+        misc-*,
+        modernize-*,
+        performance-*,
+        portability-*,
+        readability-*,
+    ]
+    Remove:
+    [
+        # abseil*,
+        # fuchsia*,
+        # llvmlib*,
+        # zircon*,
+        # altera*,
+        # google-readability-todo,
+        # readability-braces-around-statements,
+        # hicpp-braces-around-statements,
+        # modernize-use-trailing-return-type,
+        misc-no-recursion,
+        readability-identifier-length,
+        cppcoreguidelines-avoid-magic-numbers,
+        readability-magic-numbers,
+        bugprone-easily-swappable-parameters,
+        cert-err33-c, # 警告未使用的返回值
+        misc-unused-using-decls, # 警告未使用的声明
+    ]
+    CheckOptions:
+      readability-identifier-naming.VariableCase: camelCase
+      # WarnOnFloatingPointNarrowingConversion: false
+
+
+
+InlayHints:
+  Designators: true
+  DeducedTypes: true
+  Enabled: true
+  ParameterNames: true
